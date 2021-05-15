@@ -1,0 +1,54 @@
+{% extends 'base.htm' %}
+
+{% block title %}
+ Add Blog
+{% endblock title %}
+
+{% block content %}
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Add Blog</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" action="" method="POST">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Select number of question in quiz </label>
+                                <select id="course" name="count"  class="form-control custom-select bg-white border-left-0 border-md">
+                                    <option value="5">5</option>
+                                    <option value="10">20</option>
+                                    <option value="40">40</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                        <!-- /.card-body -->
+            
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-block">Continue</button>
+                        </div>
+                        
+                    </form>
+                </div>
+                <!-- /.card -->
+            
+                
+            
+            </div>
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+{% endblock content %}

@@ -1,0 +1,90 @@
+{% extends 'base.htm' %}
+
+{% block title %}
+View Quiz
+{% endblock title %} 
+{% load static %}
+{% block content %}
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header bg-primary ">
+                        <h3 class="card-title text-white text-center">View Quiz</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" action="" method="POST">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Title : {{s.title}}</label>
+                            </div>
+                            {% for i in s.questions.all %}
+                                <div class="form-group">
+                                    <section class="content">
+                                        <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card card-outline card-info">
+                                            <!-- /.card-header -->
+                                                <div class="card-body pad">
+                                                    <div class="mb-3">
+                                                        <p><h4>{{forloop.counter}} .{{i.title}} </h4> </p> 
+                                                    </div>
+                                                    <div class="form-group">
+                                                        
+                                                        <input type="radio"   value="{{i.option_1}}" {% if 1 == i.answer %} checked {% else %} disabled {% endif %}>
+                                                        <label for="">{{i.option_1}}</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        
+                                                        <input type="radio" value="{{i.option_2}}" {% if 2 == i.answer %} checked {% else %} disabled {% endif %}>
+                                                        <label>{{i.option_2}}</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        
+                                                        <input type="radio"   value="{{i.option_3}}" {% if 3 == i.answer %} checked {% else %} disabled {% endif %}>
+                                                        <label>{{i.option_3}}</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        
+                                                        <input type="radio"  value="{{i.option_4}}" {% if 4 == i.answer %} checked {% else %} disabled {% endif %}>
+                                                        <label>{{i.option_4}}</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Answer num&nbsp; :&nbsp; {{i.answer}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.col-->
+                                        </div>
+                                        <!-- ./row -->
+                                    </section>
+                                </div>
+                            {% endfor %}        
+                            
+                            
+                        </div>
+                        <!-- /.card-body -->
+            
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-block">Back to Home Page</button>
+                        </div>
+                        
+                    </form>
+                </div>
+                <!-- /.card -->
+            
+                
+            
+            </div>
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
+
+{% endblock content %}

@@ -1,0 +1,65 @@
+{% extends 'base.htm' %}
+
+{% block title %}
+History
+{% endblock title %}
+
+{% block content %}
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">History</h3>
+        
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover  text-nowrap">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Quiz Name</th>
+                                    <th>Number of Question</th>
+                                    <th>Date of Exam</th>
+                                    <th>Score</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% if quz is not none %}
+                                    {% if his is not none %}
+                                <tr>
+                                    <td>{{ quz.id  }}</td>
+                                    <td>{{ quz.title }}</td>
+                                    <td>{{ quz.number_of_questions }}</td>
+                                    <td>{{his.date}}</td>
+                                    <td class="text-danger">{{ his.score }}</td>
+                                    <td><a href="{% url 'take' quz.id %}" class="btn btn-danger">Retake</a></td>
+                                    </td>
+                                </tr>
+                                    {% endif %}
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+{% endblock content %}

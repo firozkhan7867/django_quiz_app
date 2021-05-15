@@ -1,0 +1,107 @@
+{% extends 'base.htm' %}
+
+{% block title %}
+Create Quiz
+{% endblock title %} 
+{% load static %}
+{% block content %}
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header bg-primary ">
+                        <h3 class="card-title">Create Quiz</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" action="" method="POST">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Quiz Title</label>
+                                <input type="text" class="form-control" name="title" placeholder="Quiz Title">
+                            </div>
+                            {% for i in 'y'|rjust:count %}
+                                <div class="form-group">
+                                    <label> <h2>Add Question {{forloop.counter}} </h2></label>
+                                    <section class="content">
+                                        <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card card-outline card-info">
+                                            <!-- /.card-header -->
+                                                <div class="card-body pad">
+                                                    <div class="mb-3">
+                                                        <label>Question : </label>
+                                                        <textarea name="question_{{forloop.counter}}" class="textarea" placeholder="Place some text here"
+                                                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Option 1 value</label>
+                                                        <input type="text" class="form-control" name="{{forloop.counter}}_opt_1" placeholder="Option 1 value">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Option 2 value</label>
+                                                        <input type="text" class="form-control" name="{{forloop.counter}}_opt_2" placeholder="Option 2 value">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Option 3 value</label>
+                                                        <input type="text" class="form-control" name="{{forloop.counter}}_opt_3" placeholder="Option 3 value">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Option 4 value</label>
+                                                        <input type="text" class="form-control" name="{{forloop.counter}}_opt_4" placeholder="Option 4 value">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Answer num &nbsp;</label>
+                                                        <input type="number" class="" name="{{forloop.counter}}_answer">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.col-->
+                                        </div>
+                                        <!-- ./row -->
+                                    </section>
+                                </div>
+                            {% endfor %}        
+                            
+
+                            <!-- <div class="form-group">
+                                {% if messages %}
+                                <div class="col-12">
+                                    {% for message in messages %}
+                                    {% if message.tags == "error" %}
+                                    <div class="alert alert-danger btn-block" style="margin-top: 10px;"> {{message}}</div>
+                                    {% endif %}
+                                    {% if message.tags == "success" %}
+                                    <div class="alert alert-success btn-block" style="margin-top: 10px;"> {{message}}</div>
+                                    {% endif %}
+                                    
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div> -->
+                            
+                        </div>
+                        <!-- /.card-body -->
+            
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-block">Create Quiz</button>
+                        </div>
+                        
+                    </form>
+                </div>
+                <!-- /.card -->
+            
+                
+            
+            </div>
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
+
+{% endblock content %}

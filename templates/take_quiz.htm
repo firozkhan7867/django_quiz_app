@@ -1,0 +1,159 @@
+{% extends 'base.htm' %}
+
+{% block title %}
+Take Quiz
+{% endblock title %} 
+{% load static %}
+
+{% block css %}
+<style>
+.cursor-pointer{
+    cursor: pointer;
+  }
+</style>
+{% endblock css %}
+
+
+{% block content %}
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-6">
+                        &nbsp;
+                    </div>
+                    <div class="col-md-2 col-lg-2 col-sm-2 col-0">
+                        &nbsp;
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-6 text-center">
+                        <h4><p id="demo" class=" form-control text-center bg-success  text-white"></p></h4>
+                    </div>
+                </div>
+            
+            </div>
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <div class="card-header bg-primary ">
+                        <h3 class="card-title text-light"> <strong> Take Quiz</strong></h3>
+
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form" action="" id="sent" method="POST">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group">
+                                <h3><strong> Title </strong>  - {{s.title}}</h3>
+                                <br>
+                            </div>
+                            {% for i in s.questions.all %}
+                                <div class="form-group">
+                                    <label> <h4>Question {{forloop.counter}} </h4></label>
+                                    <section class="content">
+                                        <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card card-outline card-info">
+                                            <!-- /.card-header -->
+                                                <div class="card-body pad">
+                                                    <div class="mb-3">
+                                                        <h5> <strong> <p name="question_{{forloop.counter}}" class="textarea" placeholder="Place some text here">
+                                                            {{i.title}}
+                                                        </p>
+                                                        </strong> </h5>
+                                                        <input type="hidden" name="title" value="{{i.title}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="radio"  id="1{{forloop.counter}}" name="{{forloop.counter}}" value="1">
+                                                        <label for="1{{forloop.counter}}" class="cursor-pointer" style="width: 90%;">{{i.option_1}}</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="radio"id="2{{forloop.counter}}" name="{{forloop.counter}}"  value="2">
+                                                        <label for="2{{forloop.counter}}" class="cursor-pointer" style="width: 90%;">{{i.option_2}}</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="radio"  id="3{{forloop.counter}}" name="{{forloop.counter}}" value="3">
+                                                        <label for="3{{forloop.counter}}" class="cursor-pointer" style="width: 90%;">{{i.option_3}}</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="radio" id="4{{forloop.counter}}" name="{{forloop.counter}}" value="4">
+                                                        <label for="4{{forloop.counter}}" class="cursor-pointer" style="width: 90%;">{{i.option_4}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.col-->
+                                        </div>
+                                        <!-- ./row -->
+                                    </section>
+                                </div>
+                            {% endfor %}        
+                        </div>
+                        <!-- /.card-body -->
+                        {% include 'messages.htm' %}  
+                        <div class="card-footer">
+                            <button type="submit" id="but" class="btn btn-primary btn-block">Submit</button>
+                        </div>
+                        
+                    </form>
+                </div>
+                <!-- /.card -->
+            
+                
+            
+            </div>
+        </div>
+        <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+</section>
+
+{% endblock content %}
+
+{% block js %}
+
+
+
+<script>
+    // Set the date we're counting dow  n to
+    var countDownDate = new Date().getTime() + 904000;
+    console.log(countDownDate)
+
+    let form  = document.getElementById('sent');
+
+    
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+    
+      // Get today's date and time
+      var now = new Date().getTime();
+        
+      // Find the distance between now and the count down date
+      var distance = countDownDate - now;
+        
+      // Time calculations for days, hours, minutes and seconds
+      //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      //var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+      // Output the result in an element with id="demo"
+      document.getElementById("demo").innerHTML = //days + "d " + hours + "h "
+       "Time :" + minutes + "m " + seconds + "s  Left";
+        
+      // If the count down is over, write some text 
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById('demo').innerHTML = "Time Up"
+        document.getElementById('but').disabled = true
+      }
+    }, 1000);
+</script>
+    
+
+
+
+{% endblock js %}
+
+
